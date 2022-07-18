@@ -28,17 +28,22 @@ Input: [10, 8, 4, 1] ; Output: 4
 Input: [5, 0, 3, 6] ; Output: 3
 """
 
+from tabnanny import check
+
+
 class Solution:
     def longestdistance(self, checkpoints):
         # type checkpoints: list
         # return type: int
         
-        # TODO: Write code below to return an int with the solution to the prompt
-        max = -1
-        for i in range(len(checkpoints) - 1):
-            if abs(checkpoints[i] - checkpoints[i+1])>max:
-                max = abs(checkpoints[i] - checkpoints[i+1])
-        return max
+        mp = {}
+        maxDict = 0
+        for i in range(len(checkpoints)):
+            if checkpoints[i] not in mp.keys():
+                mp[checkpoints[i]] = i
+            else:
+                maxDict = max(maxDict, i-mp[checkpoints[i]])
+        return maxDict
                 
                 
 
