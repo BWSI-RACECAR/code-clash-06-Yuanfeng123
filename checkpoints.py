@@ -46,11 +46,11 @@ class Solution:
                         arr[j+1]=temp
             return arr
         checkpoints = bubble(checkpoints)
-        max = -1
+        dist = []
         for i in range(len(checkpoints) - 1):
-            if abs(checkpoints[i] - checkpoints[i+1]):
-                max = abs(checkpoints[i] - checkpoints[i+1])
-        return max
+            dist.append(checkpoints[i+1] - checkpoints[i])
+        dist = bubble(dist)
+        return dist[len(checkpoints) - 2]
                 
                 
 
