@@ -28,6 +28,8 @@ Input: [10, 8, 4, 1] ; Output: 4
 Input: [5, 0, 3, 6] ; Output: 3
 """
 
+
+
 from tabnanny import check
 
 
@@ -35,15 +37,20 @@ class Solution:
     def longestdistance(self, checkpoints):
         # type checkpoints: list
         # return type: int
-        
-        mp = {}
-        maxDict = 0
-        for i in range(len(checkpoints)):
-            if checkpoints[i] not in mp.keys():
-                mp[checkpoints[i]] = i
-            else:
-                maxDict = max(maxDict, i-mp[checkpoints[i]])
-        return maxDict
+        def bubble(arr):
+            for i in range(0, len(arr)):
+                for j in range(0, len(arr) - 1):
+                    if arr[j]>arr[j+1]:
+                        temp = arr[j]
+                        arr[j] = arr[j+1]
+                        arr[j+1]=temp
+            return arr
+        checkpoints = bubble(checkpoints)
+        max = -1
+        for i in range(len(checkpoints) - 1):
+            if abs(checkpoints[i] - checkpoints[i+1]):
+                max = abs(checkpoints[i] - checkpoints[i+1])
+        return max
                 
                 
 
